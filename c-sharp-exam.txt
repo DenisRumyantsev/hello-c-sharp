@@ -1,0 +1,562 @@
+C# Exam Topics
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- CTS\CLS\CLR overview, assemblies.
+
+.NET — среда выполнения программ и библиотека базовых классов.
+
+CLR (Common Language Runtime) — общеязыковая среда выполнения (слой среды выполнения).
+
+Задачи CLR — размещение, загрузка и управление по указанию .NET-типами, низкоуровневые вопросы (управление памятью и проверка безопасности).
+
+CTS (Common Type System) — общая система типов.
+
+Спецификации CTS описывают поддерживаемые средой выполнения типы данных и программные конструкции, указывают, как эти элементы взаимодействуют и представляются в формате метаданных .NET.
+
+CLS (Common Language Specification) — общеязыковые спецификации.
+
+Совместимый с .NET язык может не поддерживать все возможности, определенные CTS.
+CLS определяют подмножество общих типов и программных конструкций, понятных всем совместимым с .NET языкам.
+Если создаваемые .NET-типы опираются на возможности, соответствующие CLS, то любой совместимый с .NET язык может их использовать.
+Если типы данных или программные конструкции выходят за пределы CLS, то не всякий совместимый с .NET язык может взаимодействовать с библиотекой программного .NET-кода.
+
+C# ( Source code ) -> [ Compiler ] -> CIL-code ( Byte-code ) -> [ CLR ] -> Native code
+
+CTS - набор правил для CLR при объявлении, использовании и управлении типами. Предоставляет ООМ для реализации ЯП.
+
+CLS - подмножество CTS, которому должен следовать каждый ЯП .NET.
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- Core C# constructs. System types, type conversion, iteration\decision constructs, etc.
+
+- Value and reference types.
+
+The CLR provides the two categories of data types: Value Type and Reference Type.
+Both types are stored in different types of memory.
+A value type stores its value in the stack.
+A reference type stores a reference to the value in the managed heap.
+For example int is a value type and a class object is a reference type.
+
+bool    false
+Numeric 0
+Object  Null
+Date    1/1/0001 12:00:00 AM
+
+const int i = 10;
+
+Types:
+    Value:
+        Simple:
+            Integer:
+                int:     System.Int32
+                short:   System.Int16
+                byte:    System.Byte
+                long:    System.Int64
+            Floating:
+                float:   System.Single
+                double:  System.Double
+            Decimal:
+                decimal: System.Decimal
+            Boolean:
+                bool:    System.Boolean
+            Character:
+                char:    System.Char
+        Enumeration
+        Structure
+    Reference:
+        Class
+        String
+        Delegate
+        Interface
+        Array
+
+>>> >>> >>> Branching: if/else - switch/case
+
+if (condition)
+    // First statement
+else
+    // Second statement
+
+switch (argument)
+{
+    case "First":
+        // Do anything
+        break;
+    case "Second":
+        // Do anything
+        break;
+    default:
+        // Do anything
+        break;
+}
+
+>>> >>> >>> Looping: for - foreach - while - do/while
+
+for (initializer; condition; iterator) Statement;
+
+for ( ; ; ) { }
+
+string[] countries = { "India", "USA", "Canada", "China" };
+foreach (string country in countries) Console.WriteLine(country);
+
+while (condition) Statement;
+
+do Statement while (condition);
+
+>>> >>> >>> Jumping: break - continue - goto
+
+int i = 0;
+labelX: Console.WriteLine("label construct" + i++);
+if (i < 5) goto labelX;
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- OOP principles.
+
+Combine into an object both data and the methods that operate on that data.
+
+Mechanisms: encapsulation - inheritance - polymorphism - reusability
+
+Encapsulation binds together code and the data it manipulates and keeps them both safe from outside interference and misuse.
+A protective container that prevents code and data from being accessed by other code defined outside the container.
+
+Inheritance is the process by which one object acquires the properties of another object.
+A type derives from a base type, taking all the base type members fields and functions.
+Useful when you need to add functionality to an existing type.
+All .NET classes inherit from the System.Object class.
+A class can include new functionality as well as use the existing object's class functions and properties as well.
+A programmer can use an existing class and without modifying it, add additional features to it.
+
+Polymorphism allows one interface to be used for a general class of action.
+One interface, multiple actions. The specific action is determined by the exact nature of circumstances.
+
+Reusability
+Once a class has been created, it can be distributed to other programmers for use in their own program.
+In .NET terminology this is called a component or a DLL.
+
+Attributes accessibility modifiers class identifier: baselist { body }
+
+Attributes provide additional context to a class, like adjectives; for example the Serializable attribute.
+
+Accessibility == visibility
+
+Default accessibility of
+    a class:        internal
+    class members:  private
+
+Accessibility (Visible inside...):
+    public:             current and referencing assembly
+    private:            current class
+    protected:          current and derived class
+    Internal:           containing assembly
+    Internal protected: containing assembly and descendent of the current class
+
+Modifiers (Class...):
+    sealed:     can't be inherited by a derived class
+    static:     contains only static members
+    unsafe:     has some unsafe construct likes pointers
+    Abstract:   instance can not be created
+
+The baselist is the inherited class. Classes inherit from the System.Object type by default.
+A class can inherit and implement multiple interfaces but doesn't support multiple inheritances.
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- Exception handling.
+
+try
+{
+    throw new SomeException("Exception message");
+}
+catch (FirstException) when (condition)
+{
+    // Do anything
+    throw;
+}
+catch (SecondException ex)
+{
+    LogError(ex);
+}
+finally
+{
+    // Do anything
+}
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- Interfaces and abstract classes.
+
+An interface defines a contract.
+Any class or struct that implements that contract must provide an implementation of the members defined in the interface.
+Beginning with C# 8.0, an interface may define a default implementation for members.
+It may also define static members in order to provide a single implementation for common functionality.
+
+interface ABC
+{
+    void Method();
+}
+
+class XYZ : ABC
+{
+    void ABC.Method()
+    {
+        // Implementation
+    }
+
+    static void Main()
+    {
+        ABC obj = new XYZ();
+        obj.Method();
+    }
+}
+
+An interface can be a member of a namespace or a class.
+An interface declaration can contain declarations (signatures without any implementation) of the following members:
+    * Methods
+    * Properties
+    * Indexers
+    * Events
+
+These preceding member declarations typically do not contain a body.
+Beginning with C# 8.0, an interface member may declare a body. This is called a default implementation.
+Members with bodies permit the interface to provide a "default" implementation for classes and structs that don't provide an overriding implementation.
+In addition, beginning with C# 8.0, an interface may include:
+    * Constants
+    * Operators
+    * Static constructor
+    * Nested types
+    * Static fields, methods, properties, indexers, and events
+    * Member declarations using the explicit interface implementation syntax
+    * Explicit access modifiers (the default access is public)
+
+interface IPoint
+{
+    int X { get; set; }
+    int Y { get; set; }
+    double Distance { get; }
+}
+
+class Point : IPoint
+{
+    public Point(int x, int y) { X = x; Y = y; }
+    public int X { get; set; }
+    public int Y { get; set; }
+    public double Distance => Math.Sqrt(X * X + Y * Y);
+}
+
+class MainClass
+{
+    static void PrintPoint(IPoint p) { Console.WriteLine("Point: ( {0} :: {1} )", p.X, p.Y); }
+    static void Main()
+    {
+        IPoint p = new Point(19, 23);
+        PrintPoint(p); // >>> Point: ( 19 :: 23 )
+    }
+}
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- Collections and generics.
+
+int a = 10;
+var b = (Object)a;
+int c = (int)b;
+
+Array
+    Arrays are strongly typed (meaning that you can only put one type of object into it).
+    Limited to size (Fixed length).
+
+ArrayList
+    ArrayList are strongly typed.
+    Data can increase on need basis.
+    It will do the boxing and unboxing while processing (decrease the performance).
+
+List (Generic Collection)
+    List are strongly typed.
+    Data can increase on need basis.
+    Don't incur overhead of being converted to and from type object.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Generics
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Check < int > obj1 = new Check < int > ();
+            Check < string > obj2 = new Check < string > ();
+            Console.WriteLine("Integer Comparison: {0}", obj1.Compare(2, 3));
+            Console.WriteLine(" String Comparison: {0}", obj2.Compare("abc", "abc"));
+        }
+
+        class Check < T >
+        {
+            public bool Compare(T a, T b) { return a == b; }
+        }
+    }
+}
+
+// === === ===
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace GenericCollection
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List < int > listObj = new List < int > (); // index based generic collection (arraylist)
+            listObj.Add(123);
+            Console.WriteLine("List First Value: {0}", listObj[0]); // Displaying list value using index
+
+            Dictionary < int, string > objDic = new Dictionary < int, string > (); // Key based generic Collection (Dictionary)
+            objDic.Add(123, "abc");
+            Console.WriteLine("Dictionary Value: {0}", objDic[123]); // Displaying Dictionary value using Key
+
+            Stack < int > objStack = new Stack < int > (); // Priority based Generic Collection (Stack)
+            objStack.Push(1);
+            objStack.Push(2);
+            objStack.Push(3);
+            Console.WriteLine("First Get Value from Stack: {0}", objStack.Pop()); // Display first value from Stack
+
+            Queue < int > objQueue = new Queue < int > (); // Priority based Generic Collection (Queues)
+            objQueue.Enqueue(1);
+            objQueue.Enqueue(2);
+            objQueue.Enqueue(3);
+            Console.WriteLine("First Get Value from Queue: {0}", objQueue.Dequeue()); // Display first value from Stack
+
+            Console.WriteLine();
+            // Creating Employee records
+            Employee emp1 = new Employee(1002, "Denis", "Ivanovo");
+            Employee emp2 = new Employee(1002, "Alice", "WonderLand");
+
+            List < Employee > empList = new List < Employee > (); // Creating generic List with Employee records
+            empList.Add(emp1);
+            empList.Add(emp2);
+            // Displaying employee records from list collection
+            foreach(Employee emp in empList) emp.Print();
+        }
+
+        public class Employee
+        {
+            public Employee(int id, string name, string address) { ID = id; Name = name; Address = address }
+            public int ID;
+            public string Name;
+            public string Address;
+            public Print() { Console.WriteLine("\nEmployee info:\n  ID: {0}\n  Name: {1}\n  Address: {2}", ID, Name, Address); }
+        }
+    }
+}
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- Delegates, events, lambda expressions.
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- Indexers, operator overloading, custom type conversion, extension methods, anonymous types.
+
+C# is static/strongly-typed in compile-time.
+
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- LINQ to Objects. Applying LINQ queries to collections.
+
+LINQ (Language-Integrated Query) :: язык запросов к источнику данных.
+Объект, реализующий интерфейс IEnumerable (коллекции, массивы), набор данных DataSet, документ XML.
+
+Разновидности LINQ:
+* LINQ to Objects       :: массивы и коллекции
+* LINQ to Entities      :: обращение к базам данных через технологию Entity Framework
+* LINQ to Sql           :: данные в MS SQL Server
+* LINQ to XML           :: файлы XML
+* LINQ to DataSet       :: объекты DataSet
+* Parallel LINQ (PLINQ) :: параллельные запросы
+
+using System.LINQ;
+
+string[] teams = {"Бавария", "Боруссия", "Реал Мадрид", "Манчестер Сити", "ПСЖ", "Барселона"};
+
+var selectedTeams = new List<string>();
+foreach(string s in teams) if (s.ToUpper().StartsWith("Б")) selectedTeams.Add(s);
+selectedTeams.Sort();
+
+var selectedTeams = from t in teams where t.ToUpper().StartsWith("Б") orderby t select t;
+
+var selectedTeams = teams.Where(t=>t.ToUpper().StartsWith("Б")).OrderBy(t => t);
+
+foreach (string s in selectedTeams) Console.WriteLine(s);
+
+Список используемых методов расширения LINQ
+
+Select             :: проекция
+Where              :: фильтр
+OrderBy            :: по возрастанию
+OrderByDescending  :: по убыванию
+ThenBy             :: доп критерии для упорядочивания по возрастанию
+ThenByDescending   :: доп критерии для упорядочивания по убыванию
+Join               :: соединяет две коллекции по определенному признаку
+GroupBy            :: группирует по ключу
+ToLookup           :: группирует по ключу, при этом все элементы добавляются в словарь
+GroupJoin          :: соединение коллекций и группировка элементов по ключу
+Reverse            :: обратный поряодок
+All                :: все ли элементы коллекции удовлятворяют определенному условию
+Any                :: удовлетворяет хотя бы один элемент коллекции определенному условию
+Contains           :: содержит ли коллекция определенный элемент
+Distinct           :: удаляет дублирующиеся элементы из коллекции
+Except             :: разность двух коллекций
+Union              :: объединяет две коллекции
+Intersect          :: пересечение двух коллекций
+Count              :: количество элементов коллекции, которые удовлетворяют определенному условию
+Sum                :: сумма числовых значений в коллекции
+Average            :: cреднее значение числовых значений в коллекции
+Min                :: минимальное значение
+Max                :: максимальное значение
+Take               :: выбирает определенное количество элементов
+Skip               :: пропускает определенное количество элементов
+TakeWhile          :: возвращает элементы пока условие истинно
+SkipWhile          :: пропускает элементы пока условие истинно
+Concat             :: объединяет две коллекции
+Zip                :: объединяет две коллекции в соответствии с определенным условием
+First              :: первый элемент
+FirstOrDefault     :: первый элемент или значение по умолчанию
+Single             :: выбирает единственный элемент коллекции, иначе исключение
+SingleOrDefault    :: первый элемент или значение по умолчанию
+ElementAt          :: элемент по индексу
+ElementAtOrDefault :: элемент по индексу или значение по умолчанию, если индекс вне допустимого диапазона
+Last               :: последний элемент
+LastOrDefault      :: последний элемент или значение по умолчанию
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- Finalizable and Disposable objects. Garbage collection.
+
+Briefly, the GC works as shown below:
+
+* It searches for managed objects that are referenced in managed code.
+  ( выполняет поиск управляемых объектов, на которые есть ссылки в управляемом коде )
+
+* It then attempts to finalize those objects that are not referenced in the code.
+  ( завершает работу над объектами, на которые нет ссылок в коде )
+
+* It frees the unreferenced objects and reclaims the memory occupied by them.
+  ( освобождает объекты без ссылок и восстанавливает занимаемую ими память )
+
+The GC maintains lists of managed objects arranged in "generations".
+
+The GC works more frequently in the lower generations than in the higher ones.
+
+
+Finalizers :: Implicit Resource Cleanup :: Implementation of the Finalize method
+
+Finalizers should free only external resources held directly by the object itself.
+
+A class that has no finalizer implemented but is holding references to unmanaged objects can cause memory leaks,
+because the resources might become orphaned if a class instance is destroyed before releasing the unmanaged objects.
+
+You can NOT call or override the Finalize method.
+It is generated implicitly if you have a destructor for the class.
+
+```
+class Test
+{
+    // Some Code
+
+    ~Test
+    {
+        // Necessary cleanup code
+    }
+}
+```
+
+The ~Test syntax declares an explicit destructor in C#,
+letting you write explicit cleanup code that will run during the finalize operation.
+The framework implicitly translates the explicit destructor to create a call to Finalize:
+
+```
+protected override void Finalize()
+{
+    try
+    {
+        // Necessary cleanup code
+    }
+    finally
+    {
+        base.Finalize();
+    }
+}
+```
+
+You can NOT control when (or even if) the GC calls Finalize.
+You should treat destructors only as a fallback mechanism for releasing unmanaged resources.
+The approved way to release unmanaged resources is to
+  1) make your class inherit from the IDisposable interface
+  2) implement the  Dispose() method
+
+
+The Dispose Method :: Explicit Resource Cleanup
+
+This method can release the unmanaged resources in a deterministic fashion.
+Dispose doesn't remove the object itself from memory.
+Dispose method must call GC.SuppressFinalize(this) to prevent the finalizer from running.
+Implementing IDisposable is a good choice when you want your code, not the GC, to decide when to clean up resources.
+
+```
+public interface IDisposable { void Dispose(); }
+
+class Test : IDisposable
+{
+    private bool isDisposed = false;
+
+    ~Test() { Dispose(false); }
+
+    protected void Dispose(bool disposing)
+    {
+        if (disposing) { /* Code to dispose the managed resources of the class */ }
+        // Code to dispose the un-managed resources of the class
+        isDisposed = true;
+    }
+
+    public void Dispose() { Dispose(true); GC.SuppressFinalize(this); }
+}
+```
+
+Clean-up the unmanaged resources in the Finalize method and the managed ones in the Dispose method,
+when the Dispose/Finalize pattern has been used in your code.
+
+```
+public class Base: IDisposable
+{
+    private bool isDisposed = false;
+
+    public void Dispose() { Dispose(true); GC.SuppressFinalize(this); }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!isDisposed && disposing) { /* Code to dispose the managed resources held by the class */ }
+        // Code to dispose the unmanaged resources held by the class
+        isDisposed = true;
+
+        base.Dispose(disposing);
+    }
+
+    ~Base() { Dispose (false); }
+}
+```
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
+
+- Dynamic types.
+
+=====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
