@@ -74,22 +74,13 @@ Types:
 
 >>> >>> >>> Branching: if/else - switch/case
 
-if (condition)
-    // First statement
-else
-    // Second statement
+if (condition) { /* First statement */ } else { /* Second statement */ }
 
 switch (argument)
 {
-    case "First":
-        // Do anything
-        break;
-    case "Second":
-        // Do anything
-        break;
-    default:
-        // Do anything
-        break;
+    case "First":  /* Do anything */ break;
+    case "Second": /* Do anything */ break;
+    default:       /* Do anything */ break;
 }
 
 >>> >>> >>> Looping: for - foreach - while - do/while
@@ -193,23 +184,13 @@ Any class or struct that implements that contract must provide an implementation
 Beginning with C# 8.0, an interface may define a default implementation for members.
 It may also define static members in order to provide a single implementation for common functionality.
 
-interface ABC
-{
-    void Method();
-}
+interface ABC { void Method(); }
 
 class XYZ : ABC
 {
-    void ABC.Method()
-    {
-        // Implementation
-    }
+    void ABC.Method() { /* Implementation */ }
 
-    static void Main()
-    {
-        ABC obj = new XYZ();
-        obj.Method();
-    }
+    static void Main() { ABC obj = new XYZ(); obj.Method(); }
 }
 
 An interface can be a member of a namespace or a class.
@@ -303,60 +284,6 @@ namespace Generics
 }
 
 // === === ===
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GenericCollection
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            List < int > listObj = new List < int > (); // index based generic collection (arraylist)
-            listObj.Add(123);
-            Console.WriteLine("List First Value: {0}", listObj[0]); // Displaying list value using index
-
-            Dictionary < int, string > objDic = new Dictionary < int, string > (); // Key based generic Collection (Dictionary)
-            objDic.Add(123, "abc");
-            Console.WriteLine("Dictionary Value: {0}", objDic[123]); // Displaying Dictionary value using Key
-
-            Stack < int > objStack = new Stack < int > (); // Priority based Generic Collection (Stack)
-            objStack.Push(1);
-            objStack.Push(2);
-            objStack.Push(3);
-            Console.WriteLine("First Get Value from Stack: {0}", objStack.Pop()); // Display first value from Stack
-
-            Queue < int > objQueue = new Queue < int > (); // Priority based Generic Collection (Queues)
-            objQueue.Enqueue(1);
-            objQueue.Enqueue(2);
-            objQueue.Enqueue(3);
-            Console.WriteLine("First Get Value from Queue: {0}", objQueue.Dequeue()); // Display first value from Stack
-
-            Console.WriteLine();
-            // Creating Employee records
-            Employee emp1 = new Employee(1002, "Denis", "Ivanovo");
-            Employee emp2 = new Employee(1002, "Alice", "WonderLand");
-
-            List < Employee > empList = new List < Employee > (); // Creating generic List with Employee records
-            empList.Add(emp1);
-            empList.Add(emp2);
-            // Displaying employee records from list collection
-            foreach(Employee emp in empList) emp.Print();
-        }
-
-        public class Employee
-        {
-            public Employee(int id, string name, string address) { ID = id; Name = name; Address = address }
-            public int ID;
-            public string Name;
-            public string Address;
-            public Print() { Console.WriteLine("\nEmployee info:\n  ID: {0}\n  Name: {1}\n  Address: {2}", ID, Name, Address); }
-        }
-    }
-}
 
 =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
 
@@ -472,11 +399,7 @@ It is generated implicitly if you have a destructor for the class.
 class Test
 {
     // Some Code
-
-    ~Test
-    {
-        // Necessary cleanup code
-    }
+    ~Test { /* Necessary cleanup code */ }
 }
 ```
 
@@ -487,14 +410,8 @@ The framework implicitly translates the explicit destructor to create a call to 
 ```
 protected override void Finalize()
 {
-    try
-    {
-        // Necessary cleanup code
-    }
-    finally
-    {
-        base.Finalize();
-    }
+    try { /* Necessary cleanup code */ }
+    finally { base.Finalize(); }
 }
 ```
 
