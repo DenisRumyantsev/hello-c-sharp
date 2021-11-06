@@ -209,6 +209,8 @@ namespace script
 
         static void Main()
         {
+            // Program.Main();
+
             Program p = new Program();
 
             List<Del> dlgt = new List<Del>()
