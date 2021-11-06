@@ -1,7 +1,9 @@
 ﻿
 using Research;
 
-EventResearch.Research();
+CollectionResearch.Research();
+
+// EventResearch.Research();
 
 // DelegateResearch.Research();
 
@@ -105,37 +107,6 @@ EventResearch.Research();
 //         // Test_0();
 //         // await Test_1();
 //         await Test_2();
-//     }
-// }
-
-// =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
-
-// using System;
-
-// namespace script
-// {
-//     class Collection < T >
-//     {
-//         private T[] arr = new T[100];
-
-//         // public T this[int i] { get { return arr[i]; } set { arr[i] = value; } }
-
-//         // public T this[int i] { get => arr[i]; set => arr[i] = value; }
-
-//         public T this[int i] => arr[i];
-//         private int next = 0;
-//         public void Add(T value) { if (next >= arr.Length) throw new IndexOutOfRangeException($"This collection can hold only {arr.Length} elements."); arr[next++] = value; }
-//     }
-
-//     class Program
-//     {
-//         static void Main()
-//         {
-//             var cllctn = new Collection < string > ();
-//             // cllctn[0] = "Hello, World!";
-//             cllctn.Add("Hello, World!");
-//             Console.WriteLine(cllctn[0]);
-//         }
 //     }
 // }
 
