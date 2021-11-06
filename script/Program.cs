@@ -195,47 +195,59 @@
 
 // =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
 
-// using System;
+using System;
 
-// namespace script
-// {
-//     public delegate void Del();
-//     public delegate void DelNum(int num);
+namespace script
+{
+    public delegate void Del();
+    public delegate void DelNum(int num);
 
-//     class Program
-//     {
-//         public void Caller1() { Console.WriteLine("This is Caller 1 function..."); }
-//         public static void Caller2() { Console.WriteLine("This is Caller 2 function..."); }
+    class Program
+    {
+        public void Caller_1_() { Console.WriteLine("This is Caller 1 function..."); }
+        public static void Caller_2_() { Console.WriteLine("This is Caller 2 function..."); }
 
-//         static void Main()
-//         {
-//             Program p = new Program();
-//             Del dlgt1 = new Del(p.Caller1);
-//             Del dlgt2 = new Del(Caller2);
-//             Del dlgt3 = new Del(
-//                 delegate { Console.WriteLine("This is Caller 3 function..."); }
-//             );
-//             Del dlgt4 = new Del(
-//                 () => { Console.WriteLine("This is Caller 4 function..."); }
-//             );
-//             DelNum dlgt5 = new DelNum(
-//                 delegate(int num) { Console.WriteLine("This is Caller 5 function with {0} argument...", num); }
-//             );
-//             DelNum dlgt6 = new DelNum(
-//                 (int num) => { Console.WriteLine("This is Caller 6 function with {0} argument...", num); }
-//             );
-//             dlgt1();
-//             dlgt2();
-//             dlgt3();
-//             dlgt4();
-//             dlgt5(5);
-//             dlgt6(6);
-//             Del MultiDelegate1234 = dlgt1 + dlgt2 + dlgt3 + dlgt4;
-//             MultiDelegate1234();
-//             DelNum MultiDelegate56 = dlgt5 + dlgt6; // Multi Cast Idea
-//             MultiDelegate56(7);
-//         }
-//     }
-// }
+        static void Main()
+        {
+            Program p = new Program();
+
+            List<Del> dlgt = new List<Del>()
+            {
+                new Del(p.Caller_1_),
+                new Del(Caller_2_),
+                new Del(
+                    delegate { Console.WriteLine("This is Caller 3 function..."); }
+                ),
+                new Del(
+                    () => { Console.WriteLine("This is Caller 4 function..."); }
+                )
+            };
+
+            List<DelNum> dlgtNum = new List<DelNum>()
+            {
+                new DelNum(
+                    delegate(int num) { Console.WriteLine($"This is Caller 5 function with {num} argument..."); }
+                ),
+                new DelNum(
+                    (int num) => { Console.WriteLine($"This is Caller 6 function with {num} argument..."); }
+                )
+            };
+
+            dlgt[0]();
+            dlgt[1]();
+            dlgt[2]();
+            dlgt[3]();
+
+            dlgtNum[0](5);
+            dlgtNum[1](6);
+
+            Del MultiDelegate0123 = dlgt[0] + dlgt[1] + dlgt[2] + dlgt[3];
+            MultiDelegate0123();
+
+            DelNum MultiDelegate56 = dlgtNum[0] + dlgtNum[1]; // Multi Cast Idea
+            MultiDelegate56(7);
+        }
+    }
+}
 
 // =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
