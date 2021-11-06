@@ -1,7 +1,9 @@
 ﻿
 using Research;
 
-DelegateResearch.Research();
+EventResearch.Research();
+
+// DelegateResearch.Research();
 
 // =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
 
@@ -134,66 +136,6 @@ DelegateResearch.Research();
 //             cllctn.Add("Hello, World!");
 //             Console.WriteLine(cllctn[0]);
 //         }
-//     }
-// }
-
-// =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
-
-// using System;
-
-// namespace script
-// {
-//     class Args
-//     {
-//         public Args(string msg, int sum) { Msg = msg; Sum = sum; }
-//         public string Msg { get; }
-//         public int Sum { get; }
-//     }
-
-//     class Account
-//     {
-//         public delegate void Handler_1(string msg);
-//         public delegate void Handler_2(object sender, Args e);
-//         private event Handler_1 _N;
-//         public event Handler_1 N_1
-//         {
-//             add { _N += value; Console.WriteLine($"  # {value.Method.Name} added"); }
-//             remove { _N -= value; Console.WriteLine($"  # {value.Method.Name} removed"); }
-//         }
-//         public event Handler_2 N_2;
-//         public Account(int sum) { Sum = sum; }
-//         public int Sum { get; private set; }
-//         public void Put(int sum) { int s = Sum; Sum += sum; string msg = $"{s} + {sum} = {Sum}"; _N?.Invoke(msg); N_2?.Invoke(this, new Args(msg, sum)); }
-//         public void Take(int sum)
-//         {
-//             if (Sum >= sum) { int s = Sum; Sum -= sum; string msg = $"{s} - {sum} = {Sum}"; _N?.Invoke(msg); N_2?.Invoke(this, new Args(msg, sum)); }
-//             else { string msg = $"{Sum} < {sum}! Not enough!"; _N?.Invoke(msg); N_2?.Invoke(this, new Args(msg, sum)); }
-//         }
-//         public void PrintSum() { Console.WriteLine($"Account Sum: {Sum}\n"); }
-//     }
-
-//     class Program
-//     {
-//         static void Main(string[] args)
-//         {
-//             Account X = new Account(100);
-//             X.N_2 += Msg;
-//             X.N_1 += delegate (string mes) { Console.WriteLine($"  % Anonimous >>> {mes}"); };
-//             X.N_1 += (string mes) => Console.WriteLine($"  % Lambda >>> {mes}");
-//             X.N_1 += BlueMsg;
-//             X.Put(20);
-//             X.PrintSum();
-//             X.N_1 -= BlueMsg;
-//             X.N_1 += new Account.Handler_1(RedMsg);
-//             X.Take(70);
-//             X.PrintSum();
-//             X.Take(180);
-//             X.PrintSum();
-//         }
-
-//         private static void Msg(object sender, Args e) { Console.WriteLine($"  & Sum: {e.Sum}\n  & Msg: {e.Msg}"); }
-//         private static void BlueMsg(string message) { Console.ForegroundColor = ConsoleColor.Blue; Console.WriteLine(message); Console.ResetColor(); }
-//         private static void RedMsg(string message) { Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine(message); Console.ResetColor(); }
 //     }
 // }
 
