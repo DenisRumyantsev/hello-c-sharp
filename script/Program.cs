@@ -1,7 +1,9 @@
 ﻿
 using Research;
 
-CollectionResearch.Research();
+await ThreadingResearch.Research();
+
+// CollectionResearch.Research();
 
 // EventResearch.Research();
 
@@ -60,54 +62,3 @@ CollectionResearch.Research();
 //
 // xyz.Method_2_(d1);  // no compiler error (xyz is not dynamic)
 // // run-time exception is raised because the run-time type of d1 is int
-
-// =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
-
-// using System;
-// using System.Threading.Tasks;
-//
-// class Program
-// {
-//     public static void Test_0()
-//     {
-//         var t = Task.Factory.StartNew(
-//             () =>
-//             {
-//                 Console.WriteLine("Start");
-//
-//                 return Task.Factory.StartNew(
-//                     () => { Task.Delay(5000).Wait(); Console.WriteLine("Done"); }
-//                 );
-//             }
-//         );
-//
-//         t.Wait(); Console.WriteLine("All done");
-//     }
-//
-//     public static async Task Test_1()
-//     {
-//         await Task.Factory.StartNew(
-//             async () => { Console.WriteLine("Start"); await Task.Delay(5000); Console.WriteLine("Done"); }
-//         ).Unwrap();
-//
-//         Console.WriteLine("All done");
-//     }
-//
-//     public static async Task Test_2()
-//     {
-//         await Task.Run(
-//             async () => { Console.WriteLine("Start"); await Task.Delay(5000); Console.WriteLine("Done"); }
-//         );
-//
-//         Console.WriteLine("All done");
-//     }
-//
-//     static async Task Main(string[] args)
-//     {
-//         // Test_0();
-//         // await Test_1();
-//         await Test_2();
-//     }
-// }
-
-// =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
