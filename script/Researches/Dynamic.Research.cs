@@ -1,4 +1,6 @@
-﻿namespace Research
+﻿using System;
+
+namespace Research
 {
     class Abc
     {
