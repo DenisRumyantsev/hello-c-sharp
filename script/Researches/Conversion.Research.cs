@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Research
 {
@@ -49,6 +50,19 @@ namespace Research
 
             OldItem OI_2_ = new OldItem("Second Old Item", 78, 90);
             NewItem NI_2_ = OI_2_;
+
+            var spam = new { Amount = 123, Message = "Hello" };
+            Console.WriteLine(spam.Amount + spam.Message);
+
+            var prods = new[]
+            {
+                new { name = "apple", color = "red", diam = 1 },
+                new { name = "watermelon", color = "green", diam = 7 }
+            };
+
+            var prodQuery = from prod in prods select new { prod.name, prod.diam };
+
+            foreach (var p in prodQuery) Console.WriteLine($"Name :: \"{p.name}\" - - - Diam :: \"{p.diam}\"");
         }
     }
 }
