@@ -1,6 +1,8 @@
 ﻿
 using Research;
 
+ConversionResearch.Research();
+
 DynamicResearch.Research();
 
 await ThreadingResearch.Research();

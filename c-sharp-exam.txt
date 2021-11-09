@@ -295,6 +295,11 @@ namespace Generics
 
 C# is static/strongly-typed in compile-time.
 
+Types of conversions:
+* Implicit :: we don’t need any particular syntax / no data loss
+* Explicit :: data loss possibility
+
+Cast :: narrowing / widening
 
 =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====   =====
 
