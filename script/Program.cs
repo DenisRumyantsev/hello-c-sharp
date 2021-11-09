@@ -1,6 +1,8 @@
 ﻿
 using Research;
 
+ExtensionResearch.Research();
+
 ConversionResearch.Research();
 
 DynamicResearch.Research();
